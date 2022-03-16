@@ -22,11 +22,12 @@ let hour8 = document.querySelector('#hour8')
 // Create array to store recurring targets
 let hourList = [hour0,hour1,hour2,hour3,hour4,hour5,hour6,hour7,hour8]
 let arrayLength = hourList.length; 
-let saveData = null;
 
 var loadData = function(){
    saveData = JSON.parse(localStorage.getItem("saveData")); 
 }
+
+loadData();
 
 if (!saveData) {
     saveData = [
@@ -47,7 +48,9 @@ if (!saveData) {
 
 //function to update the content list
 let updateFunction = function(){
-    console.log(currentHour);
+
+    saveData = JSON.parse(localStorage.getItem("saveData")); 
+
     currentMoment = moment();
 
     weekDayName = moment(currentMoment).format('dddd');
@@ -96,7 +99,7 @@ var saveContent = function(){
     }
 
     window.localStorage.setItem("saveData", JSON.stringify(saveData));
-    saveData = JSON.parse(localStorage.getItem("saveData")); 
+    
     //updateFunction();
 }
 
